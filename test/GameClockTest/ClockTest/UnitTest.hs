@@ -29,9 +29,13 @@ countDown_Delay = testGroup "countDown (Delay)"
   ]
 
 countDown_TimeLimit = testGroup "countDown (TimeLimit)"
-  [
+  [ testCase "持ち時間減少"     $ countDown 10 (timeLimit 60) @?= ( 0, timeLimit 50)
+  , testCase "持ち時間使い切り" $ countDown 60 (timeLimit 60) @?= ( 0, timeLimit  0)
+  , testCase "持ち時間オーバー" $ countDown 90 (timeLimit 60) @?= (30, timeLimit  0)
   ]
 
 countDown_ConsiderationTime = testGroup "countDown (ConsiderationTime)"
-  [
+  [ testCase "考慮時間内"       $ countDown 10 (considerationTime 60) @?= ( 0, considerationTime 0)
+  , testCase "考慮時間ぴったり" $ countDown 60 (considerationTime 60) @?= ( 0, considerationTime 0)
+  , testCase "考慮時間オーバー" $ countDown 90 (considerationTime 60) @?= (30, considerationTime 0)
   ]

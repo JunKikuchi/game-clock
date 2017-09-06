@@ -9,10 +9,10 @@ module GameClock.Clock.Unit
 
 import GameClock.Clock.Sec
 
-data Unit = RoundDown Sec
-          | Delay Sec
-          | TimeLimit Sec
-          | ConsiderationTime Sec
+data Unit = RoundDown Sec         -- 切り捨て
+          | Delay Sec             -- 秒読み
+          | TimeLimit Sec         -- 持ち時間
+          | ConsiderationTime Sec -- 考慮時間
           deriving (Show, Eq)
 
 roundDown :: Sec -> Unit
