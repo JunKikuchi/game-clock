@@ -1,22 +1,20 @@
 module GameClock.Clock
-  ( Sec
-  , Clock
-  , wordClock
+  ( Clock
+  , clock
   , countDown
   , isOver
   ) where
 
-type Sec   = Int
-data Clock = Word Sec deriving (Show)
+import           GameClock.Clock.Sec
+import qualified GameClock.Clock.Unit as Unit
 
-wordClock :: Sec -> Clock
-wordClock = Word
+newtype Clock = Clock [Unit.Unit] deriving (Show)
+
+clock :: [Unit.Unit] -> Clock
+clock = Clock
 
 countDown :: Sec -> Clock -> Clock
-countDown ms (Word c) = Word ms'
-  where
-    c'  = c - ms
-    ms' = if c' >= 0 then c' else 0
+countDown = undefined
 
 isOver :: Clock -> Bool
 isOver = undefined
