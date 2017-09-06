@@ -15,13 +15,13 @@ data Unit = RoundDown Sec
           deriving (Show)
 
 roundDown :: Sec -> Unit
-roundDown = undefined
+roundDown = RoundDown
 
 delay :: Sec -> Unit
-delay = undefined
+delay = Delay
 
 timeLimit :: Sec -> Unit
-timeLimit = undefined
+timeLimit = TimeLimit
 
 considerationTime :: Sec -> Unit
-considerationTime = undefined
+considerationTime = ConsiderationTime
