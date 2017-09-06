@@ -1,18 +1,18 @@
 module GameClock.Clock
-  ( Millisec
+  ( Sec
   , Clock
   , wordClock
   , countDown
   , isOver
   ) where
 
-type Millisec = Int
-data Clock    = Word Millisec deriving (Show)
+type Sec   = Int
+data Clock = Word Sec deriving (Show)
 
-wordClock :: Millisec -> Clock
+wordClock :: Sec -> Clock
 wordClock = Word
 
-countDown :: Millisec -> Clock -> Clock
+countDown :: Sec -> Clock -> Clock
 countDown ms (Word c) = Word ms'
   where
     c'  = c - ms
