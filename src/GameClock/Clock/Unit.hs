@@ -1,27 +1,27 @@
 module GameClock.Clock.Unit
   ( Unit
   , roundDown
-  , timeLimit
   , delay
+  , timeLimit
   , considerationTime
   ) where
 
 import GameClock.Clock.Sec
 
 data Unit = RoundDown Sec
-          | TimeLimit Sec
           | Delay Sec
+          | TimeLimit Sec
           | ConsiderationTime Sec
           deriving (Show)
 
 roundDown :: Sec -> Unit
 roundDown = undefined
 
-timeLimit :: Sec -> Unit
-timeLimit = undefined
-
 delay :: Sec -> Unit
 delay = undefined
+
+timeLimit :: Sec -> Unit
+timeLimit = undefined
 
 considerationTime :: Sec -> Unit
 considerationTime = undefined
