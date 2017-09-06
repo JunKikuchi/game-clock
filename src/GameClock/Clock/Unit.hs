@@ -13,7 +13,7 @@ data Unit = RoundDown Sec
           | Delay Sec
           | TimeLimit Sec
           | ConsiderationTime Sec
-          deriving (Show)
+          deriving (Show, Eq)
 
 roundDown :: Sec -> Unit
 roundDown = RoundDown
