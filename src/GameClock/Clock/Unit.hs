@@ -4,6 +4,7 @@ module GameClock.Clock.Unit
   , delay
   , timeLimit
   , considerationTime
+  , countDown
   ) where
 
 import GameClock.Clock.Sec
@@ -25,3 +26,6 @@ timeLimit = TimeLimit
 
 considerationTime :: Sec -> Unit
 considerationTime = ConsiderationTime
+
+countDown :: Sec -> Unit -> (Sec, Unit)
+countDown = undefined
