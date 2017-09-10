@@ -5,6 +5,7 @@ module GameClock.Clock.Unit
   , timeLimit
   , considerationTime
   , countDown
+  , over
   ) where
 
 import GameClock.Clock.Sec
@@ -37,3 +38,6 @@ countDown s (TimeLimit t)
   | otherwise = (s - t, TimeLimit 0)
 countDown s (ConsiderationTime c) = (s', ConsiderationTime 0)
   where s' = if s <= c then 0 else (s - c)
+
+over :: Unit -> Bool
+over = undefined
