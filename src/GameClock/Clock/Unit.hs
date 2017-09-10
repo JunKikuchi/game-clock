@@ -28,4 +28,12 @@ considerationTime :: Sec -> Unit
 considerationTime = ConsiderationTime
 
 countDown :: Sec -> Unit -> (Sec, Unit)
-countDown = undefined
+countDown s (RoundDown r) = (s', RoundDown r)
+  where s' = (s `div` r) * r
+countDown s (Delay c) = (s', Delay c)
+  where s' = if s <= c then 0 else (s - c)
+countDown s (TimeLimit t)
+  | s <= t    = (0, TimeLimit (t - s))
+  | otherwise = (s - t, TimeLimit 0)
+countDown s (ConsiderationTime c) = (s', ConsiderationTime 0)
+  where s' = if s <= c then 0 else (s - c)
