@@ -11,7 +11,7 @@ import qualified Data.Map            as Map
 import qualified GameClock.Clock     as Clock
 import           GameClock.Clock.Sec
 
-newtype GameClock color = GameClock (Map.Map color Clock.Clock)
+newtype GameClock color = GameClock (Map.Map color Clock.Clock) deriving (Show)
 
 gameClock :: (Ord color, Enum color, Bounded color) => Clock.Clock -> GameClock color
 gameClock clock = GameClock . Map.fromAscList . map (flip (,) clock) $ [minBound..maxBound]
