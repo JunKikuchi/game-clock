@@ -2,7 +2,7 @@ module GameClock.Clock
   ( Clock
   , clock
   , countDown
-  , isOver
+  , over
   ) where
 
 import           GameClock.Clock.Sec
@@ -16,5 +16,5 @@ clock = Clock
 countDown :: Sec -> Clock -> Clock
 countDown = undefined
 
-isOver :: Clock -> Bool
-isOver = undefined
+over :: Clock -> Bool
+over = undefined

@@ -3,7 +3,7 @@ module GameClock
   , gameClock
   , countDown
   , lookup
-  , isOver
+  , over
   ) where
 
 import Prelude hiding (lookup)
@@ -24,5 +24,5 @@ countDown ms color (GameClock gc) = GameClock $ Map.update countDown' color gc
 lookup :: (Ord color) => color -> GameClock color -> Maybe Clock.Clock
 lookup color (GameClock gc) = Map.lookup color gc
 
-isOver :: (Ord color) => color -> GameClock color -> Bool
-isOver color gc = maybe minBound Clock.isOver $ lookup color gc
+over :: (Ord color) => color -> GameClock color -> Bool
+over color gc = maybe minBound Clock.over $ lookup color gc
