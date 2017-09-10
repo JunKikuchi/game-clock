@@ -28,5 +28,6 @@ byoyomiTest = testGroup "byoyomi 3 60 5"
   , testCase "切り捨て秒数以上" $ countDown 30 (byoyomi 3 60 5) @?= (byoyomi 3 30 5)
   , testCase "秒読み以内"       $ countDown 63 (byoyomi 3 60 5) @?= (byoyomi 3  0 5)
   , testCase "秒読み以内"       $ countDown 65 (byoyomi 3 60 5) @?= (byoyomi 3  0 5)
+  , testCase "秒読み以内"       $ countDown  5 (byoyomi 3  0 5) @?= (byoyomi 3  0 5)
   , testCase "秒読みオーバー"   $ countDown 90 (byoyomi 3 60 5) @?= (byoyomi 3  0 0)
   ]
