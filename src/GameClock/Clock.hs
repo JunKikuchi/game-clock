@@ -32,4 +32,4 @@ countDown s (Clock us) = Clock (countDown' s us)
 
 -- | 時間切れ判定
 over :: Clock -> Bool
-over = undefined
+over (Clock us) = all id $ map Unit.over us
