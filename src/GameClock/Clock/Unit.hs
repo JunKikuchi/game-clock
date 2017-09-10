@@ -40,4 +40,7 @@ countDown s (ConsiderationTime c) = (s', ConsiderationTime 0)
   where s' = if s <= c then 0 else (s - c)
 
 over :: Unit -> Bool
-over = undefined
+over (RoundDown _) = True
+over (Delay _) = True
+over (TimeLimit s) = s == 0
+over (ConsiderationTime s) = s == 0
