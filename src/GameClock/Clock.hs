@@ -2,6 +2,7 @@ module GameClock.Clock
   ( Clock
   , clock
   , suddenDeath
+  , byoyomi
   , countDown
   , over
   ) where
@@ -18,6 +19,9 @@ clock = Clock
 
 -- | 差し切り時計（サドンデス）作成
 suddenDeath rd tl = clock [Unit.roundDown rd, Unit.timeLimit tl]
+
+-- | 秒読み時計作成
+byoyomi rd tl dl = clock [Unit.roundDown rd, Unit.timeLimit tl, Unit.byoyomi dl]
 
 -- | 秒数カウントダウン
 countDown :: Sec -> Clock -> Clock
