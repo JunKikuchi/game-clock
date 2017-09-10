@@ -14,7 +14,7 @@ import           GameClock.Clock.Sec
 newtype GameClock color = GameClock (Map.Map color Clock.Clock)
 
 gameClock :: (Ord color, Enum color, Bounded color) => Clock.Clock -> GameClock color
-gameClock clock = GameClock. Map.fromAscList . map (flip (,) clock) $ [minBound..maxBound]
+gameClock clock = GameClock . Map.fromAscList . map (flip (,) clock) $ [minBound..maxBound]
 
 countDown :: (Ord color) => Sec -> color -> GameClock color -> GameClock color
 countDown ms color (GameClock gc) = GameClock $ Map.update countDown' color gc
