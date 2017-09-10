@@ -21,8 +21,8 @@ countDown ms color (GameClock gc) = GameClock $ Map.update countDown' color gc
   where
     countDown' clock = Just $ Clock.countDown ms clock
 
-lookup :: (Ord color) => color -> GameClock color -> Maybe Clock.Clock
-lookup color (GameClock gc) = Map.lookup color gc
+lookup :: (Ord color) => color -> GameClock color -> Clock.Clock
+lookup color (GameClock gc) = maybe Clock.empty id (Map.lookup color gc)
 
 over :: (Ord color) => color -> GameClock color -> Bool
-over color gc = maybe minBound Clock.over $ lookup color gc
+over color gc = Clock.over $ lookup color gc

@@ -1,6 +1,7 @@
 module GameClock.Clock
   ( Clock
   , clock
+  , empty
   , suddenDeath
   , byoyomi
   , countDown
@@ -16,6 +17,10 @@ newtype Clock = Clock [Unit.Unit] deriving (Show, Eq)
 -- | 時計作成
 clock :: [Unit.Unit] -> Clock
 clock = Clock
+
+-- | 空の時計作成
+empty :: Clock
+empty = clock []
 
 -- | 差し切り時計（サドンデス）作成
 suddenDeath rd tl = clock [Unit.roundDown rd, Unit.timeLimit tl]
