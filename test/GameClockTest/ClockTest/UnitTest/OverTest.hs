@@ -6,6 +6,7 @@ import GameClock.Clock.Unit
 
 tests = testGroup "over"
   [ _RoundDown
+  , _Byoyomi
   , _Delay
   , _TimeLimit
   , _ConsiderationTime
@@ -13,6 +14,11 @@ tests = testGroup "over"
 
 _RoundDown = testGroup "RoundDown"
   [testCase "常にTrue" $ over (roundDown 60) @?= True]
+
+_Byoyomi = testGroup "Byoyomi"
+  [ testCase "ゼロの場合"     $ over (byoyomi  0) @?= True
+  , testCase "ゼロ以外の場合" $ over (byoyomi 60) @?= False
+  ]
 
 _Delay = testGroup "Delay"
   [testCase "常にTrue" $ over (delay 60) @?= True]

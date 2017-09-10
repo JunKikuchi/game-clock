@@ -58,6 +58,7 @@ countDown s (ConsiderationTime c) = (s', ConsiderationTime 0)
 -- | 時間切れ判定
 over :: Unit -> Bool
 over (RoundDown _) = True
+over (Byoyomi s) = s == 0
 over (Delay _) = True
 over (TimeLimit s) = s == 0
 over (ConsiderationTime s) = s == 0
