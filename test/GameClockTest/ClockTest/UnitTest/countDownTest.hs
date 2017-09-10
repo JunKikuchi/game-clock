@@ -21,7 +21,7 @@ _RoundDown = testGroup "RoundDown (切り捨て)"
 
 _Delay = testGroup "Delay (秒読み)"
   [ testCase "秒読み時間内"       $ countDown  30 (delay 60) @?= ( 0, delay 60)
-  , testCase "秒読み時間ぴったり" $ countDown  60 (delay 60) @?= (60, delay 60)
+  , testCase "秒読み時間ぴったり" $ countDown  60 (delay 60) @?= ( 0, delay 60)
   , testCase "秒読み時間オーバー" $ countDown  90 (delay 60) @?= (30, delay 60)
   , testCase "秒読み時間オーバー" $ countDown 120 (delay 60) @?= (60, delay 60)
   , testCase "秒読み時間オーバー" $ countDown 150 (delay 60) @?= (90, delay 60)
