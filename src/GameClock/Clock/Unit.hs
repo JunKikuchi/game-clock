@@ -35,6 +35,7 @@ considerationTime = ConsiderationTime
 
 -- | 秒数カウントダウン
 countDown :: Sec -> Unit -> (Sec, Unit)
+countDown s (RoundDown 0) = (s, RoundDown 0)
 countDown s (RoundDown r) = (s', RoundDown r)
   where s' = (s `div` r) * r
 countDown s (Delay c) = (s', Delay c)

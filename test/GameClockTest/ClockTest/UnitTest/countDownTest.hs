@@ -12,7 +12,9 @@ tests = testGroup "countDown"
   ]
 
 _RoundDown = testGroup "RoundDown (切り捨て)"
-  [ testCase "小さい場合"         $ countDown  30 (roundDown 60) @?= (  0, roundDown 60)
+  [ testCase "ゼロの場合"         $ countDown   0 (roundDown  0) @?= (  0, roundDown  0)
+  , testCase "ゼロの場合"         $ countDown   0 (roundDown 60) @?= (  0, roundDown 60)
+  , testCase "小さい場合"         $ countDown  30 (roundDown 60) @?= (  0, roundDown 60)
   , testCase "同じ場合"           $ countDown  60 (roundDown 60) @?= ( 60, roundDown 60)
   , testCase "大きい場合切り捨て" $ countDown  90 (roundDown 60) @?= ( 60, roundDown 60)
   , testCase "大きい場合切り捨て" $ countDown 120 (roundDown 60) @?= (120, roundDown 60)
