@@ -6,6 +6,7 @@ import GameClock.Clock.Unit
 
 tests = testGroup "countDown"
   [ _RoundDown
+  , _Byoyomi
   , _Delay
   , _TimeLimit
   , _ConsiderationTime
@@ -19,6 +20,13 @@ _RoundDown = testGroup "RoundDown (切り捨て)"
   , testCase "大きい場合切り捨て" $ countDown  90 (roundDown 60) @?= ( 60, roundDown 60)
   , testCase "大きい場合切り捨て" $ countDown 120 (roundDown 60) @?= (120, roundDown 60)
   , testCase "大きい場合切り捨て" $ countDown 150 (roundDown 60) @?= (120, roundDown 60)
+  ]
+
+_Byoyomi = testGroup "Byoyomi"
+  [ testCase "秒読み時間内"       $ countDown  30 (byoyomi 60) @?= ( 0, byoyomi 60)
+  , testCase "秒読みぴったり"     $ countDown  60 (byoyomi 60) @?= ( 0, byoyomi 60)
+  , testCase "秒読み時間オーバー" $ countDown  90 (byoyomi 60) @?= (30, byoyomi  0)
+  , testCase "秒読み時間オーバー" $ countDown 120 (byoyomi 60) @?= (60, byoyomi  0)
   ]
 
 _Delay = testGroup "Delay"
