@@ -42,6 +42,7 @@ test-suite game-clock-test
                      , GameClockTest.ClockTest.CountDownTest
                      , GameClockTest.ClockTest.OverTest
                      , GameClockTest.CountDownTest
+                     , GameClockTest.OverTest
   default-language:    Haskell2010
 
 source-repository head
