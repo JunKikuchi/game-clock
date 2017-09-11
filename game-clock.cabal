@@ -8,7 +8,7 @@ license-file:        LICENSE
 author:              Jun Kikuchi
 maintainer:          kikuchi@bonnou.com
 copyright:           2017 Jun Kikuchi
-category:            Web
+category:            Game
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
@@ -30,11 +30,10 @@ test-suite game-clock-test
   build-depends:       base
                      , tasty
                      , tasty-hunit
-                     , tasty-smallcheck
-                     , tasty-quickcheck
-                     , tasty
+                     -- , tasty-smallcheck
+                     -- , tasty-quickcheck
                      , game-clock
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
   other-modules:       GameClockTest.ClockTest.UnitTest
                      , GameClockTest.ClockTest.UnitTest.CountDownTest
                      , GameClockTest.ClockTest.UnitTest.OverTest
