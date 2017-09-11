@@ -1,10 +1,5 @@
 module GameClock.Clock.Unit
-  ( Unit
-  , roundDown
-  , byoyomi
-  , delay
-  , timeLimit
-  , considerationTime
+  ( Unit(..)
   , countDown
   , over
   ) where
@@ -18,26 +13,6 @@ data Unit = RoundDown Sec         -- 切り捨て
           | TimeLimit Sec         -- 持ち時間
           | ConsiderationTime Sec -- 考慮時間
           deriving (Show, Eq)
-
--- | 切り捨て時計ユニット作成
-roundDown :: Sec -> Unit
-roundDown = RoundDown
-
--- | 秒読み時計ユニット作成
-byoyomi :: Sec -> Unit
-byoyomi = Byoyomi
-
--- | ディレイ時計ユニット作成
-delay :: Sec -> Unit
-delay = Delay
-
--- | 持ち時間時計ユニット作成
-timeLimit :: Sec -> Unit
-timeLimit = TimeLimit
-
--- | 考慮時間時計ユニット作成
-considerationTime :: Sec -> Unit
-considerationTime = ConsiderationTime
 
 -- | 秒数カウントダウン
 countDown :: Sec -> Unit -> (Sec, Unit)

@@ -13,38 +13,38 @@ tests = testGroup "countDown"
   ]
 
 _RoundDown = testGroup "RoundDown (切り捨て)"
-  [ testCase "ゼロの場合"         $ countDown   0 (roundDown  0) @?= (  0, roundDown  0)
-  , testCase "ゼロの場合"         $ countDown   0 (roundDown 60) @?= (  0, roundDown 60)
-  , testCase "小さい場合"         $ countDown  30 (roundDown 60) @?= (  0, roundDown 60)
-  , testCase "同じ場合"           $ countDown  60 (roundDown 60) @?= ( 60, roundDown 60)
-  , testCase "大きい場合切り捨て" $ countDown  90 (roundDown 60) @?= ( 60, roundDown 60)
-  , testCase "大きい場合切り捨て" $ countDown 120 (roundDown 60) @?= (120, roundDown 60)
-  , testCase "大きい場合切り捨て" $ countDown 150 (roundDown 60) @?= (120, roundDown 60)
+  [ testCase "ゼロの場合"         $ countDown   0 (RoundDown  0) @?= (  0, RoundDown  0)
+  , testCase "ゼロの場合"         $ countDown   0 (RoundDown 60) @?= (  0, RoundDown 60)
+  , testCase "小さい場合"         $ countDown  30 (RoundDown 60) @?= (  0, RoundDown 60)
+  , testCase "同じ場合"           $ countDown  60 (RoundDown 60) @?= ( 60, RoundDown 60)
+  , testCase "大きい場合切り捨て" $ countDown  90 (RoundDown 60) @?= ( 60, RoundDown 60)
+  , testCase "大きい場合切り捨て" $ countDown 120 (RoundDown 60) @?= (120, RoundDown 60)
+  , testCase "大きい場合切り捨て" $ countDown 150 (RoundDown 60) @?= (120, RoundDown 60)
   ]
 
 _Byoyomi = testGroup "Byoyomi"
-  [ testCase "秒読み時間内"       $ countDown  30 (byoyomi 60) @?= ( 0, byoyomi 60)
-  , testCase "秒読みぴったり"     $ countDown  60 (byoyomi 60) @?= ( 0, byoyomi 60)
-  , testCase "秒読み時間オーバー" $ countDown  90 (byoyomi 60) @?= (30, byoyomi  0)
-  , testCase "秒読み時間オーバー" $ countDown 120 (byoyomi 60) @?= (60, byoyomi  0)
+  [ testCase "秒読み時間内"       $ countDown  30 (Byoyomi 60) @?= ( 0, Byoyomi 60)
+  , testCase "秒読みぴったり"     $ countDown  60 (Byoyomi 60) @?= ( 0, Byoyomi 60)
+  , testCase "秒読み時間オーバー" $ countDown  90 (Byoyomi 60) @?= (30, Byoyomi  0)
+  , testCase "秒読み時間オーバー" $ countDown 120 (Byoyomi 60) @?= (60, Byoyomi  0)
   ]
 
 _Delay = testGroup "Delay"
-  [ testCase "ディレイ時間内"       $ countDown  30 (delay 60) @?= (  0, delay 60)
-  , testCase "ディレイ時間ぴったり" $ countDown  60 (delay 60) @?= (  0, delay 60)
-  , testCase "ディレイ時間オーバー" $ countDown  90 (delay 60) @?= ( 90, delay 60)
-  , testCase "ディレイ時間オーバー" $ countDown 120 (delay 60) @?= (120, delay 60)
-  , testCase "ディレイ時間オーバー" $ countDown 150 (delay 60) @?= (150, delay 60)
+  [ testCase "ディレイ時間内"       $ countDown  30 (Delay 60) @?= (  0, Delay 60)
+  , testCase "ディレイ時間ぴったり" $ countDown  60 (Delay 60) @?= (  0, Delay 60)
+  , testCase "ディレイ時間オーバー" $ countDown  90 (Delay 60) @?= ( 90, Delay 60)
+  , testCase "ディレイ時間オーバー" $ countDown 120 (Delay 60) @?= (120, Delay 60)
+  , testCase "ディレイ時間オーバー" $ countDown 150 (Delay 60) @?= (150, Delay 60)
   ]
 
 _TimeLimit = testGroup "TimeLimit (持ち時間)"
-  [ testCase "持ち時間減少"     $ countDown 10 (timeLimit 60) @?= ( 0, timeLimit 50)
-  , testCase "持ち時間使い切り" $ countDown 60 (timeLimit 60) @?= ( 0, timeLimit  0)
-  , testCase "持ち時間オーバー" $ countDown 90 (timeLimit 60) @?= (30, timeLimit  0)
+  [ testCase "持ち時間減少"     $ countDown 10 (TimeLimit 60) @?= ( 0, TimeLimit 50)
+  , testCase "持ち時間使い切り" $ countDown 60 (TimeLimit 60) @?= ( 0, TimeLimit  0)
+  , testCase "持ち時間オーバー" $ countDown 90 (TimeLimit 60) @?= (30, TimeLimit  0)
   ]
 
 _ConsiderationTime = testGroup "ConsiderationTime (考慮時間)"
-  [ testCase "考慮時間内"       $ countDown 10 (considerationTime 60) @?= ( 0, considerationTime 0)
-  , testCase "考慮時間ぴったり" $ countDown 60 (considerationTime 60) @?= ( 0, considerationTime 0)
-  , testCase "考慮時間オーバー" $ countDown 90 (considerationTime 60) @?= (30, considerationTime 0)
+  [ testCase "考慮時間内"       $ countDown 10 (ConsiderationTime 60) @?= ( 0, ConsiderationTime 0)
+  , testCase "考慮時間ぴったり" $ countDown 60 (ConsiderationTime 60) @?= ( 0, ConsiderationTime 0)
+  , testCase "考慮時間オーバー" $ countDown 90 (ConsiderationTime 60) @?= (30, ConsiderationTime 0)
   ]

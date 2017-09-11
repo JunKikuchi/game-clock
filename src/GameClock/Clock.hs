@@ -23,10 +23,10 @@ empty :: Clock
 empty = clock []
 
 -- | 差し切り時計（サドンデス）作成
-suddenDeath rd tl = clock [Unit.roundDown rd, Unit.timeLimit tl]
+suddenDeath rd tl = clock [Unit.RoundDown rd, Unit.TimeLimit tl]
 
 -- | 秒読み時計作成
-byoyomi rd tl dl = clock [Unit.roundDown rd, Unit.timeLimit tl, Unit.byoyomi dl]
+byoyomi rd tl dl = clock [Unit.RoundDown rd, Unit.TimeLimit tl, Unit.Byoyomi dl]
 
 -- | 秒数カウントダウン
 countDown :: Sec -> Clock -> Clock

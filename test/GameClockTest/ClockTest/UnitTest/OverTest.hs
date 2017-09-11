@@ -13,22 +13,22 @@ tests = testGroup "over"
   ]
 
 _RoundDown = testGroup "RoundDown"
-  [testCase "常にTrue" $ over (roundDown 60) @?= True]
+  [testCase "常にTrue" $ over (RoundDown 60) @?= True]
 
 _Byoyomi = testGroup "Byoyomi"
-  [ testCase "ゼロの場合"     $ over (byoyomi  0) @?= True
-  , testCase "ゼロ以外の場合" $ over (byoyomi 60) @?= False
+  [ testCase "ゼロの場合"     $ over (Byoyomi  0) @?= True
+  , testCase "ゼロ以外の場合" $ over (Byoyomi 60) @?= False
   ]
 
 _Delay = testGroup "Delay"
-  [testCase "常にTrue" $ over (delay 60) @?= True]
+  [testCase "常にTrue" $ over (Delay 60) @?= True]
 
 _TimeLimit = testGroup "TimeLimit"
-  [ testCase "ゼロの場合"     $ over (timeLimit  0) @?= True
-  , testCase "ゼロ以外の場合" $ over (timeLimit 60) @?= False
+  [ testCase "ゼロの場合"     $ over (TimeLimit  0) @?= True
+  , testCase "ゼロ以外の場合" $ over (TimeLimit 60) @?= False
   ]
 
 _ConsiderationTime = testGroup "ConsiderationTime"
-  [ testCase "ゼロの場合"     $ over (considerationTime  0) @?= True
-  , testCase "ゼロ以外の場合" $ over (considerationTime 60) @?= False
+  [ testCase "ゼロの場合"     $ over (ConsiderationTime  0) @?= True
+  , testCase "ゼロ以外の場合" $ over (ConsiderationTime 60) @?= False
   ]
