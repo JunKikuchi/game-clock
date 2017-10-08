@@ -1,7 +1,7 @@
 module GameClock
   ( GameClock
   , gameClock
-  , countDown
+  , countdown
   , lookup
   , over
   ) where
@@ -19,10 +19,10 @@ gameClock :: (Ord color, Enum color, Bounded color) => Clock.Clock -> GameClock 
 gameClock clock = GameClock . Map.fromAscList . map (flip (,) clock) $ [minBound..maxBound]
 
 -- | 秒数カウントダウン
-countDown :: (Ord color) => Sec -> color -> GameClock color -> GameClock color
-countDown ms color (GameClock gc) = GameClock $ Map.update countDown' color gc
+countdown :: (Ord color) => Sec -> color -> GameClock color -> GameClock color
+countdown ms color (GameClock gc) = GameClock $ Map.update countdown' color gc
   where
-    countDown' clock = Just $ Clock.countDown ms clock
+    countdown' clock = Just $ Clock.countdown ms clock
 
 -- | 時計取得
 lookup :: (Ord color) => color -> GameClock color -> Clock.Clock

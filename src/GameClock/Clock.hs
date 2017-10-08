@@ -4,7 +4,7 @@ module GameClock.Clock
   , empty
   , suddenDeath
   , byoyomi
-  , countDown
+  , countdown
   , over
   ) where
 
@@ -29,11 +29,11 @@ suddenDeath rd tl = clock [Unit.RoundDown rd, Unit.TimeLimit tl]
 byoyomi rd tl dl = clock [Unit.RoundDown rd, Unit.TimeLimit tl, Unit.Byoyomi dl]
 
 -- | 秒数カウントダウン
-countDown :: Sec -> Clock -> Clock
-countDown s (Clock us) = Clock (countDown' s us)
+countdown :: Sec -> Clock -> Clock
+countdown s (Clock us) = Clock (countdown' s us)
   where
-    countDown' s []     = []
-    countDown' s (u:us) = let (s', u') = Unit.countDown s u in u':countDown' s' us
+    countdown' s []     = []
+    countdown' s (u:us) = let (s', u') = Unit.countdown s u in u':countdown' s' us
 
 -- | 時間切れ判定
 over :: Clock -> Bool

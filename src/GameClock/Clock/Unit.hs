@@ -1,6 +1,6 @@
 module GameClock.Clock.Unit
   ( Unit(..)
-  , countDown
+  , countdown
   , over
   ) where
 
@@ -15,19 +15,19 @@ data Unit = RoundDown Sec         -- 切り捨て
           deriving (Show, Eq)
 
 -- | 秒数カウントダウン
-countDown :: Sec -> Unit -> (Sec, Unit)
-countDown s (RoundDown 0) = (s, RoundDown 0)
-countDown s (RoundDown r) = (s', RoundDown r)
+countdown :: Sec -> Unit -> (Sec, Unit)
+countdown s (RoundDown 0) = (s, RoundDown 0)
+countdown s (RoundDown r) = (s', RoundDown r)
   where s' = (s `div` r) * r
-countDown s (Byoyomi c)
+countdown s (Byoyomi c)
   | s <= c    = (0, Byoyomi c)
   | otherwise = (s - c, Byoyomi 0)
-countDown s (Delay c) = (s', Delay c)
+countdown s (Delay c) = (s', Delay c)
   where s' = if s <= c then 0 else s
-countDown s (TimeLimit t)
+countdown s (TimeLimit t)
   | s <= t    = (0, TimeLimit (t - s))
   | otherwise = (s - t, TimeLimit 0)
-countDown s (ConsiderationTime c) = (s', ConsiderationTime 0)
+countdown s (ConsiderationTime c) = (s', ConsiderationTime 0)
   where s' = if s <= c then 0 else (s - c)
 
 -- | 時間切れ判定
