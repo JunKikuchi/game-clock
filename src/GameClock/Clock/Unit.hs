@@ -4,7 +4,7 @@ module GameClock.Clock.Unit
   , over
   ) where
 
-import GameClock.Clock.Sec
+import           GameClock.Clock.Sec
 
 -- | 時計ユニットデータ
 data Unit = RoundDown Sec         -- 切り捨て
@@ -28,12 +28,12 @@ countdown s (TimeLimit t)
   | s <= t    = (0, TimeLimit (t - s))
   | otherwise = (s - t, TimeLimit 0)
 countdown s (ConsiderationTime c) = (s', ConsiderationTime 0)
-  where s' = if s <= c then 0 else (s - c)
+  where s' = if s <= c then 0 else s - c
 
 -- | 時間切れ判定
 over :: Unit -> Bool
-over (RoundDown _) = True
-over (Byoyomi s) = s == 0
-over (Delay _) = True
-over (TimeLimit s) = s == 0
+over (RoundDown _)         = True
+over (Byoyomi s)           = s == 0
+over (Delay _)             = True
+over (TimeLimit s)         = s == 0
 over (ConsiderationTime s) = s == 0

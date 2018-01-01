@@ -1,9 +1,9 @@
 module GameClockTest.OverTest (tests) where
 
-import Test.Tasty
-import Test.Tasty.HUnit
-import GameClock
-import qualified GameClock.Clock as Clock
+import           GameClock
+import qualified GameClock.Clock  as Clock
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
 gameClock' :: GameClock Bool
 gameClock' = countdown 90 False $ gameClock $ Clock.suddenDeath 3 60

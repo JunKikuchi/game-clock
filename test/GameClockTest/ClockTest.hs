@@ -1,8 +1,8 @@
 module GameClockTest.ClockTest (tests) where
 
-import Test.Tasty
 import qualified GameClockTest.ClockTest.CountDownTest as CountDownTest
-import qualified GameClockTest.ClockTest.OverTest as OverTest
+import qualified GameClockTest.ClockTest.OverTest      as OverTest
+import           Test.Tasty
 
 tests :: TestTree
 tests = testGroup "GameClock.Clock"

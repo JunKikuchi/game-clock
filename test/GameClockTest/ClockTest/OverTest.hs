@@ -1,8 +1,8 @@
 module GameClockTest.ClockTest.OverTest (tests) where
 
-import Test.Tasty
-import Test.Tasty.HUnit
-import GameClock.Clock
+import           GameClock.Clock
+import           Test.Tasty
+import           Test.Tasty.HUnit
 
 tests :: TestTree
 tests = testGroup "over"

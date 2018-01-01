@@ -37,4 +37,4 @@ countdown s (Clock us) = Clock (countdown' s us)
 
 -- | 時間切れ判定
 over :: Clock -> Bool
-over (Clock us) = all id $ map Unit.over us
+over (Clock us) = all Unit.over us

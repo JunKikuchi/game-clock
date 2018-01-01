@@ -6,10 +6,11 @@ module GameClock
   , over
   ) where
 
-import Prelude hiding (lookup)
 import qualified Data.Map            as Map
+import           Data.Maybe          (fromMaybe)
 import qualified GameClock.Clock     as Clock
-import           GameClock.Clock.Sec
+import           GameClock.Clock.Sec (Sec)
+import           Prelude             hiding (lookup)
 
 -- | ゲーム時計データ
 newtype GameClock color = GameClock (Map.Map color Clock.Clock) deriving (Show, Eq)
@@ -26,7 +27,7 @@ countdown ms color (GameClock gc) = GameClock $ Map.update countdown' color gc
 
 -- | 時計取得
 lookup :: (Ord color) => color -> GameClock color -> Clock.Clock
-lookup color (GameClock gc) = maybe Clock.empty id (Map.lookup color gc)
+lookup color (GameClock gc) = fromMaybe Clock.empty (Map.lookup color gc)
 
 -- | 時間切れ判定
 over :: (Ord color) => color -> GameClock color -> Bool
