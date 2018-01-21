@@ -1,9 +1,13 @@
+{-# LANGUAGE TemplateHaskell #-}
+
 module GameClock.Clock.Unit
   ( Unit(..)
   , countdown
   , over
   ) where
 
+import           Data.Aeson
+import           Data.Aeson.TH
 import           GameClock.Clock.Sec
 
 -- | 時計ユニットデータ
@@ -13,6 +17,8 @@ data Unit = RoundDown Sec         -- 切り捨て
           | TimeLimit Sec         -- 持ち時間
           | ConsiderationTime Sec -- 考慮時間
           deriving (Show, Eq)
+
+$(deriveJSON defaultOptions ''Unit)
 
 -- | 秒数カウントダウン
 countdown :: Sec -> Unit -> (Sec, Unit)
