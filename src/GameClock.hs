@@ -6,8 +6,6 @@ module GameClock
   , countdown
   , lookup
   , over
-  , encode
-  , decode
   ) where
 
 import           Data.Aeson
