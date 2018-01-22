@@ -2,6 +2,7 @@
 
 module GameClockTest.EncodeTest (tests) where
 
+import           Data.Aeson
 import           GameClock
 import qualified GameClock.Clock  as Clock
 import           Test.Tasty
