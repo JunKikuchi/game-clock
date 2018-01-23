@@ -1,6 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell   #-}
-
 module GameClock.Clock
   ( Clock
   , clock
@@ -11,15 +8,11 @@ module GameClock.Clock
   , over
   ) where
 
-import           Data.Aeson
-import           Data.Aeson.TH
 import           GameClock.Clock.Sec
 import qualified GameClock.Clock.Unit as Unit
 
 -- | 時計データ
 newtype Clock = Clock [Unit.Unit] deriving (Show, Eq)
-
-$(deriveJSON defaultOptions ''Clock)
 
 -- | 時計作成
 clock :: [Unit.Unit] -> Clock

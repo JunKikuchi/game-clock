@@ -21,7 +21,6 @@ library
                      , GameClock.Clock.Unit
   build-depends:       base >= 4.7 && < 5
                      , containers
-                     , aeson
   default-language:    Haskell2010
 
 test-suite game-clock-test
@@ -33,7 +32,6 @@ test-suite game-clock-test
                      , tasty-hunit
                      -- , tasty-smallcheck
                      -- , tasty-quickcheck
-                     , aeson
                      , game-clock
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
   other-modules:       GameClockTest.ClockTest.UnitTest
@@ -44,8 +42,6 @@ test-suite game-clock-test
                      , GameClockTest.ClockTest.OverTest
                      , GameClockTest.CountDownTest
                      , GameClockTest.OverTest
-                     , GameClockTest.EncodeTest
-                     , GameClockTest.DecodeTest
   default-language:    Haskell2010
 
 source-repository head

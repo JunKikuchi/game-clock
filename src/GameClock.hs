@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module GameClock
   ( GameClock
   , gameClock
@@ -8,8 +6,6 @@ module GameClock
   , over
   ) where
 
-import           Data.Aeson
-import           Data.Aeson.Types    (typeMismatch)
 import qualified Data.Map            as Map
 import           Data.Maybe          (fromMaybe)
 import qualified GameClock.Clock     as Clock
@@ -18,15 +14,6 @@ import           Prelude             hiding (lookup)
 
 -- | ゲーム時計データ
 newtype GameClock color = GameClock (Map.Map color Clock.Clock) deriving (Show, Eq)
-
--- | Encoding
-instance (ToJSONKey color) => ToJSON (GameClock color) where
-  toJSON (GameClock gc) = object [ "GameClock" .= gc ]
-
--- | Decoding
-instance (FromJSONKey color, Ord color) => FromJSON (GameClock color) where
-  parseJSON (Object v) = GameClock <$> (v .: "GameClock")
-  parseJSON invalid    = typeMismatch "GameClock" invalid
 
 -- | ゲーム時計作成
 gameClock :: (Ord color, Enum color, Bounded color) => Clock.Clock -> GameClock color
