@@ -1,15 +1,17 @@
 module GameClock.Clock
   ( Clock
   , clock
+  , toList
   , empty
   , suddenDeath
   , byoyomi
   , countdown
   , over
-  ) where
+  )
+where
 
 import           GameClock.Clock.Sec
-import qualified GameClock.Clock.Unit as Unit
+import qualified GameClock.Clock.Unit          as Unit
 
 -- | 時計データ
 newtype Clock = Clock [Unit.Unit] deriving (Show, Eq)
@@ -17,6 +19,10 @@ newtype Clock = Clock [Unit.Unit] deriving (Show, Eq)
 -- | 時計作成
 clock :: [Unit.Unit] -> Clock
 clock = Clock
+
+-- | 時計データのリスト
+toList :: Clock -> [Unit.Unit]
+toList (Clock units) = units
 
 -- | 空の時計作成
 empty :: Clock
@@ -26,14 +32,16 @@ empty = clock []
 suddenDeath rd tl = clock [Unit.RoundDown rd, Unit.TimeLimit tl]
 
 -- | 秒読み時計作成
-byoyomi rd tl dl = clock [Unit.RoundDown rd, Unit.TimeLimit tl, Unit.Byoyomi dl]
+byoyomi rd tl dl =
+  clock [Unit.RoundDown rd, Unit.TimeLimit tl, Unit.Byoyomi dl]
 
 -- | 秒数カウントダウン
 countdown :: Sec -> Clock -> Clock
 countdown s (Clock us) = Clock (countdown' s us)
-  where
-    countdown' s []     = []
-    countdown' s (u:us) = let (s', u') = Unit.countdown s u in u':countdown' s' us
+ where
+  countdown' s [] = []
+  countdown' s (u : us) =
+    let (s', u') = Unit.countdown s u in u' : countdown' s' us
 
 -- | 時間切れ判定
 over :: Clock -> Bool
